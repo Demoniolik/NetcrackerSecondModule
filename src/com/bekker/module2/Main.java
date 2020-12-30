@@ -1,7 +1,6 @@
 package com.bekker.module2;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -16,11 +15,12 @@ public class Main {
                 "4 Закінчити виконання програми, якщо буде в консолі введено слово «quit»");
         String input = scanner.nextLine();
         getNumberFromString();
+        long start = System.currentTimeMillis();
         while (!input.equals("quit")) {
             switch (input) {
                 case "1":
                     Set<Integer> integerSet = new HashSet<>(Arrays.asList(array));
-                    integerSet.stream().forEach(System.out::println);
+                    integerSet.forEach(System.out::println);
                     break;
                 case "2":
                     List<Integer> integerList = new ArrayList<>(List.of(array));
@@ -41,6 +41,12 @@ public class Main {
                     break;
             }
             input = scanner.nextLine();
+        }
+        long end = System.currentTimeMillis();
+        try (FileWriter fileWriter = new FileWriter("out.txt")) {
+            fileWriter.write((end - start) + "");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
