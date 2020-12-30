@@ -18,27 +18,16 @@ public class Main {
         long start = System.currentTimeMillis();
         while (!input.equals("quit")) {
             switch (input) {
-                case "1":
-                    Set<Integer> integerSet = new HashSet<>(Arrays.asList(array));
-                    integerSet.forEach(System.out::println);
-                    break;
-                case "2":
-                    List<Integer> integerList = new ArrayList<>(List.of(array));
-                    integerList.stream().filter(e -> e % 2 == 0).forEach(System.out::println);
-                    break;
-                case "3":
-                    Map<Integer, Integer> map = new HashMap<>();
-                    for (int i = 0, index = 0; i < array.length / 2; ++i) {
-                        map.put(array[index++], array[index++]); // <- Somehow it does not work as supposed because of indexes
-
-                    }
-                    for (Map.Entry<Integer, Integer> element : map.entrySet()) {
-                        System.out.println("First element – " + element.getKey() + "», «Second element - " + element.getValue() + "»");
-                    }
-                    break;
-                default:
-                    System.out.println("Not correct option!");
-                    break;
+                case "1" -> {
+                    workWithSet();
+                }
+                case "2" -> {
+                    workWithList();
+                }
+                case "3" -> {
+                    workWithMap();
+                }
+                default -> System.out.println("Not correct option!");
             }
             input = scanner.nextLine();
         }
@@ -48,6 +37,27 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void workWithMap() {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0, index = 0; i < array.length / 2; ++i) {
+            map.put(array[index++], array[index++]); // <- Somehow it does not work as supposed because of indexes
+
+        }
+        for (Map.Entry<Integer, Integer> element : map.entrySet()) {
+            System.out.println("First element – " + element.getKey() + "», «Second element - " + element.getValue() + "»");
+        }
+    }
+
+    private static void workWithList() {
+        List<Integer> integerList = new ArrayList<>(List.of(array));
+        integerList.stream().filter(e -> e % 2 == 0).forEach(System.out::println);
+    }
+
+    private static void workWithSet() {
+        Set<Integer> integerSet = new HashSet<>(Arrays.asList(array));
+        integerSet.forEach(System.out::println);
     }
 
     public static void getNumberFromString() {
