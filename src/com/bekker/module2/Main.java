@@ -33,7 +33,7 @@ public class Main {
 
                     }
                     for (Map.Entry<Integer, Integer> element : map.entrySet()) {
-                        System.out.println(element.getKey() + " | " + element.getValue());
+                        System.out.println("First element – " + element.getKey() + "», «Second element - " + element.getValue() + "»");
                     }
                     break;
                 default:
